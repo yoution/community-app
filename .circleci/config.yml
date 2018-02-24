@@ -85,8 +85,6 @@ jobs:
           command: |
             apk add --no-cache jq py-pip sudo
             sudo pip install awscli --upgrade
-            echo $PWD
-            ls
             sh ./bin/cdn-setup.sh
 
   # Test job for the cases when we do not need deployment. It just rapidly
