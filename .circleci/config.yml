@@ -74,6 +74,21 @@ jobs:
       - deploy:
           command: ./deploy.sh PROD $CIRCLE_SHA1
 
+  # Auxiliary job that just executes the CDN setup script.
+  "cdn-setup":
+    docker:
+      - image: docker:17.06.1-ce-git
+    steps:
+      - checkout
+      - run:
+          name: AWS client installation
+          command: |
+            apk add --no-cache jq py-pip sudo
+            sudo pip install awscli --upgrade
+      - run:
+          name: CDN setup
+          command: ./bin/cdn-setup.sh
+
   # Test job for the cases when we do not need deployment. It just rapidly
   # installs (updates) app dependencies, and runs tests (ESLint, Stylelint,
   # Jest unit-tests).
@@ -110,10 +125,17 @@ workflows:
             tags:
               only: /v[0-9]+(\.[0-9]+)*/
 
+      # CDN setup.
+      - "cdn-setup":
+          filters:
+            branches:
+              only: cdn-setup
+
       # Simple testing is executed for any branch other than "develop" and
       # "master".
       - test:
           filters:
             branches:
               ignore:
+                - cdn-setup
                 - develop

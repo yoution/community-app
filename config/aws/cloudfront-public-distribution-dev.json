@@ -1,0 +1,40 @@
+{
+  "Enabled": true,
+  "CallerReference": "CommunityAppCDN:public",
+  "Comment": "CDN and cache for public Community App assets",
+  "DefaultCacheBehavior": {
+    "TargetOriginId": "CommunityApp",
+    "ForwardedValues": {
+      "Cookies": {
+        "Forward": "none"
+      },
+      "QueryString": true,
+      "QueryStringCacheKeys": {
+        "Quantity": 2,
+        "Items": [
+          "size",
+          "version"
+        ]
+      }
+    },
+    "TrustedSigners": {
+      "Enabled": false,
+      "Quantity": 0
+    },
+    "ViewerProtocolPolicy": "redirect-to-https",
+    "MinTTL": 3000000
+  },
+  "Origins": {
+    "Quantity": 1,
+    "Items": [{
+      "Id": "CommunityApp",
+      "DomainName": "community-app.topcoder-dev.com",
+      "OriginPath": "/api/cdn/public",
+      "CustomOriginConfig": {
+        "HTTPPort": 80,
+        "HTTPSPort": 443,
+        "OriginProtocolPolicy": "https-only" 
+      }
+    }]
+  }
+}
