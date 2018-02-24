@@ -81,15 +81,13 @@ jobs:
     steps:
       - checkout
       - run:
-          name: AWS client installation
+          name: AWS client installation and CDN setup
           command: |
             apk add --no-cache jq py-pip sudo
             sudo pip install awscli --upgrade
             echo $PWD
             ls
-      - run:
-          name: CDN setup
-          command: ./bin/cdn-setup.sh
+            ./bin/cdn-setup.sh
 
   # Test job for the cases when we do not need deployment. It just rapidly
   # installs (updates) app dependencies, and runs tests (ESLint, Stylelint,
