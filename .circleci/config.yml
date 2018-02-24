@@ -87,7 +87,7 @@ jobs:
             sudo pip install awscli --upgrade
             echo $PWD
             ls
-            ./bin/cdn-setup.sh
+            sh ./bin/cdn-setup.sh
 
   # Test job for the cases when we do not need deployment. It just rapidly
   # installs (updates) app dependencies, and runs tests (ESLint, Stylelint,
