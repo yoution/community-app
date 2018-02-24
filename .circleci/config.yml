@@ -86,6 +86,7 @@ jobs:
             apk add --no-cache jq py-pip sudo
             sudo pip install awscli --upgrade
             echo $PWD
+            ls
       - run:
           name: CDN setup
           command: ./bin/cdn-setup.sh
