@@ -1,12 +1,97 @@
 {
-  "Enabled": true,
-  "CallerReference": "CommunityAppCDN:public",
   "Comment": "CDN and cache for public Community App assets",
-  "Aliases": {
-    "Quantity": 0
-  },
   "CacheBehaviors": {
     "Quantity": 0
+  },
+  "IsIPV6Enabled": true,
+  "Logging": {
+    "Bucket": "",
+    "Prefix": "",
+    "Enabled": false,
+    "IncludeCookies": false
+  },
+  "WebACLId": "",
+  "Origins": {
+    "Items": [
+      {
+        "OriginPath": "/api/cdn/public",
+        "CustomOriginConfig": {
+          "OriginSslProtocols": {
+            "Items": [
+              "SSLv3",
+              "TLSv1"
+            ],
+            "Quantity": 2
+          },
+          "OriginProtocolPolicy": "https-only",
+          "OriginReadTimeout": 30,
+          "HTTPPort": 80,
+          "HTTPSPort": 443,
+          "OriginKeepaliveTimeout": 5
+        },
+        "CustomHeaders": {
+          "Quantity": 0
+        },
+        "Id": "CommunityApp",
+        "DomainName": "community-app.topcoder-dev.com"
+      }
+    ],
+    "Quantity": 1
+  },
+  "DefaultRootObject": "",
+  "PriceClass": "PriceClass_All",
+  "Enabled": true,
+  "DefaultCacheBehavior": {
+    "TrustedSigners": {
+      "Enabled": false,
+      "Quantity": 0
+    },
+    "LambdaFunctionAssociations": {
+      "Quantity": 0
+    },
+    "TargetOriginId": "CommunityApp",
+    "ViewerProtocolPolicy": "redirect-to-https",
+    "ForwardedValues": {
+      "Headers": {
+        "Quantity": 0
+      },
+      "Cookies": {
+        "Forward": "none"
+      },
+      "QueryStringCacheKeys": {
+        "Items": [
+          "size",
+          "version"
+        ],
+        "Quantity": 2
+      },
+      "QueryString": true
+    },
+    "MaxTTL": 31536000,
+    "SmoothStreaming": false,
+    "DefaultTTL": 3000000,
+    "AllowedMethods": {
+      "Items": [
+        "HEAD",
+        "GET"
+      ],
+      "CachedMethods": {
+        "Items": [
+          "HEAD",
+          "GET"
+        ],
+        "Quantity": 2
+      },
+      "Quantity": 2
+    },
+    "MinTTL": 3000000,
+    "Compress": false
+  },
+  "CallerReference": "CommunityAppCDN:public",
+  "ViewerCertificate": {
+    "CloudFrontDefaultCertificate": true,
+    "MinimumProtocolVersion": "TLSv1",
+    "CertificateSource": "cloudfront"
   },
   "CustomErrorResponses": {
     "Quantity": 1,
@@ -15,61 +100,14 @@
       "ErrorCachingMinTTL": 1
     }]
   },
-  "DefaultCacheBehavior": {
-    "TargetOriginId": "CommunityApp",
-    "ForwardedValues": {
-      "Cookies": {
-        "Forward": "none"
-      },
-      "QueryString": true,
-      "QueryStringCacheKeys": {
-        "Quantity": 2,
-        "Items": [
-          "size",
-          "version"
-        ]
-      }
-    },
-    "TrustedSigners": {
-      "Enabled": false,
-      "Quantity": 0
-    },
-    "ViewerProtocolPolicy": "redirect-to-https",
-    "MinTTL": 3000000
-  },
-  "DefaultRootObject": "",
   "HttpVersion": "http2",
-  "IsIPV6Enabled": true,
-  "Logging": {
-    "Bucket": "",
-    "Prefix": "",
-    "Enabled": false,
-    "IncludeCookies": false
-  },
-  "Origins": {
-    "Quantity": 1,
-    "Items": [{
-      "Id": "CommunityApp",
-      "DomainName": "community-app.topcoder-dev.com",
-      "OriginPath": "/api/cdn/public",
-      "CustomOriginConfig": {
-        "HTTPPort": 80,
-        "HTTPSPort": 443,
-        "OriginProtocolPolicy": "https-only" 
-      }
-    }]
-  },
-  "PriceClass": "PriceClass_All",
   "Restrictions": {
     "GeoRestriction": {
       "RestrictionType": "none",
       "Quantity": 0
     }
   },
-  "ViewerCertificate": {
-    "CloudFrontDefaultCertificate": true,
-    "MinimumProtocolVersion": "TLSv1",
-    "CertificateSource": "cloudfront"
-  },
-  "WebACLId": ""
+  "Aliases": {
+    "Quantity": 0
+  }
 }
