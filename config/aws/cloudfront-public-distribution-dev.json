@@ -43,5 +43,6 @@
         "OriginProtocolPolicy": "https-only" 
       }
     }]
-  }
+  },
+  "PriceClass": "PriceClass_All"
 }
