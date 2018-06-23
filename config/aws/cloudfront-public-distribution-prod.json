@@ -2,6 +2,9 @@
   "Enabled": true,
   "CallerReference": "CommunityAppCDN:public",
   "Comment": "CDN and cache for public Community App assets",
+  "Aliases": {
+    "Quantity": 0
+  },
   "CustomErrorResponses": {
     "Quantity": 1,
     "Items": [{
