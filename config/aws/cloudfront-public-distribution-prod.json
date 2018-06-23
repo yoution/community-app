@@ -2,6 +2,13 @@
   "Enabled": true,
   "CallerReference": "CommunityAppCDN:public",
   "Comment": "CDN and cache for public Community App assets",
+  "CustomErrorResponses": {
+    "Quantity": 1,
+    "Items": [{
+      "ErrorCode": 404,
+      "ErrorCachingMinTTL": 1
+    }]
+  },
   "DefaultCacheBehavior": {
     "TargetOriginId": "CommunityApp",
     "ForwardedValues": {
