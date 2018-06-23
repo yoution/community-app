@@ -98,7 +98,9 @@
     "Quantity": 1,
     "Items": [{
       "ErrorCode": 404,
-      "ErrorCachingMinTTL": 1
+      "ErrorCachingMinTTL": 1,
+      "ResponseCode": "",
+      "ResponsePagePath": ""
     }]
   },
   "HttpVersion": "http2",
