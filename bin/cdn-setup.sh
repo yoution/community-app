@@ -25,8 +25,8 @@ get_config() {
   aws cloudfront get-distribution-config --id $3
 }
 
-get_config $DEV_AWS_ACCESS_KEY_ID $DEV_AWS_SECRET_ACCESS_KEY cloudfront-public-distribution-dev.json E1N7Y5O368XHVT
-get_config $PROD_AWS_ACCESS_KEY_ID $PROD_AWS_SECRET_ACCESS_KEY cloudfront-public-distribution-prod.json EKD44KXC98KGN
+get_config $DEV_AWS_ACCESS_KEY_ID $DEV_AWS_SECRET_ACCESS_KEY E1N7Y5O368XHVT
+get_config $PROD_AWS_ACCESS_KEY_ID $PROD_AWS_SECRET_ACCESS_KEY EKD44KXC98KGN
 
 # Updates distribution
 update() {
