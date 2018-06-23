@@ -42,6 +42,7 @@
   "PriceClass": "PriceClass_All",
   "Enabled": true,
   "DefaultCacheBehavior": {
+    "FieldLevelEncryptionId": "",
     "TrustedSigners": {
       "Enabled": false,
       "Quantity": 0
