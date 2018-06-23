@@ -25,8 +25,8 @@ get_config() {
   aws cloudfront get-distribution-config --id $3
 }
 
-get_config $DEV_AWS_ACCESS_KEY_ID $DEV_AWS_SECRET_ACCESS_KEY E1N7Y5O368XHVT
-get_config $PROD_AWS_ACCESS_KEY_ID $PROD_AWS_SECRET_ACCESS_KEY EKD44KXC98KGN
+# get_config $DEV_AWS_ACCESS_KEY_ID $DEV_AWS_SECRET_ACCESS_KEY E1N7Y5O368XHVT
+# get_config $PROD_AWS_ACCESS_KEY_ID $PROD_AWS_SECRET_ACCESS_KEY EKD44KXC98KGN
 
 # Updates distribution
 update() {
@@ -36,8 +36,8 @@ update() {
   aws cloudfront update-distribution --distribution-config file://$PWD/config/aws/$3 --id $4 --if-match $5
 }
 
-# update $DEV_AWS_ACCESS_KEY_ID $DEV_AWS_SECRET_ACCESS_KEY cloudfront-public-distribution-dev.json E1N7Y5O368XHVT E3EQ3ONI4KCYR
-# update $PROD_AWS_ACCESS_KEY_ID $PROD_AWS_SECRET_ACCESS_KEY cloudfront-public-distribution-prod.json EKD44KXC98KGN E1VW2GF4WR8A1K
+update $DEV_AWS_ACCESS_KEY_ID $DEV_AWS_SECRET_ACCESS_KEY cloudfront-public-distribution-dev.json E1N7Y5O368XHVT E3EQ3ONI4KCYR
+update $PROD_AWS_ACCESS_KEY_ID $PROD_AWS_SECRET_ACCESS_KEY cloudfront-public-distribution-prod.json EKD44KXC98KGN E1VW2GF4WR8A1K
 
 # Invalidates some of the cached stuff
 invalidate() {
