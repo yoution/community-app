@@ -16,10 +16,11 @@ class ProfileContainer extends React.Component {
       handleParam,
       profileForHandle,
       loadProfile,
+      communityGroupIds,
     } = this.props;
 
     if (handleParam !== profileForHandle) {
-      loadProfile(handleParam);
+      loadProfile(handleParam, communityGroupIds);
     }
   }
 
@@ -28,10 +29,11 @@ class ProfileContainer extends React.Component {
       handleParam,
       profileForHandle,
       loadProfile,
+      communityGroupIds,
     } = nextProps;
 
     if (handleParam !== profileForHandle) {
-      loadProfile(handleParam);
+      loadProfile(handleParam, communityGroupIds);
     }
   }
 
@@ -39,6 +41,7 @@ class ProfileContainer extends React.Component {
     const {
       info,
       loadingError,
+      stats,
     } = this.props;
 
     if (loadingError) {
@@ -59,7 +62,7 @@ class ProfileContainer extends React.Component {
       });
     }
 
-    return info
+    return (info && stats)
       ? (
         <ProfilePage
           {...this.props}
@@ -78,6 +81,8 @@ ProfileContainer.defaultProps = {
   profileForHandle: '',
   skills: null,
   stats: null,
+  communityGroupIds: [],
+  baseUrl: '',
 };
 
 ProfileContainer.propTypes = {
@@ -94,28 +99,38 @@ ProfileContainer.propTypes = {
   skills: PT.shape(),
   stats: PT.shape(),
   lookupData: PT.shape().isRequired,
+  communityGroupIds: PT.arrayOf(PT.string),
+  baseUrl: PT.string,
 };
 
-const mapStateToProps = (state, ownProps) => ({
-  achievements: state.profile.achievements,
-  copilot: state.profile.copilot,
-  country: state.profile.country,
-  externalAccounts: state.profile.externalAccounts,
-  externalLinks: state.profile.externalLinks,
-  handleParam: ownProps.match.params.handle,
-  info: state.profile.info,
-  loadingError: state.profile.loadingError,
-  profileForHandle: state.profile.profileForHandle,
-  skills: state.profile.skills,
-  stats: state.profile.stats,
-  lookupData: state.lookup,
-});
+const mapStateToProps = (state, ownProps) => {
+  let { profile: { stats } } = state;
+  if (stats && stats instanceof Array && stats.length === 1) {
+    const firstStat = stats[0];
+    stats = firstStat;
+  }
+
+  return ({
+    achievements: state.profile.achievements,
+    copilot: state.profile.copilot,
+    country: state.profile.country,
+    externalAccounts: state.profile.externalAccounts,
+    externalLinks: state.profile.externalLinks,
+    handleParam: ownProps.match.params.handle,
+    info: state.profile.info,
+    loadingError: state.profile.loadingError,
+    profileForHandle: state.profile.profileForHandle,
+    skills: state.profile.skills,
+    stats,
+    lookupData: state.lookup,
+  });
+};
 
 function mapDispatchToProps(dispatch) {
   const a = actions.profile;
   const lookupActions = actions.lookup;
   return {
-    loadProfile: (handle) => {
+    loadProfile: (handle, communityGroupIds) => {
       dispatch(a.clearProfile());
       dispatch(a.loadProfile(handle));
       dispatch(a.getAchievementsInit());
@@ -130,7 +145,11 @@ function mapDispatchToProps(dispatch) {
       dispatch(a.getExternalLinksDone(handle));
       dispatch(a.getInfoDone(handle));
       dispatch(a.getSkillsDone(handle));
-      dispatch(a.getStatsDone(handle));
+      if (communityGroupIds.length > 0) {
+        dispatch(a.getStatsDone(handle, communityGroupIds[0])); // get stats with community group id
+      } else {
+        dispatch(a.getStatsDone(handle));
+      }
       dispatch(lookupActions.getCountriesDone());
     },
   };
