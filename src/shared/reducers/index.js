@@ -122,11 +122,12 @@ function generateSsrOptions(req) {
 function generateUserIdHash(user) {
   const secret = _.get(config, 'SECRET.CHAMELEON_VERIFICATION_SECRET');
   const now = Math.floor(Date.now() / 1000);
+  return ''
 
-  return [
-    crypto.createHmac('sha256', secret).update(`${user.userId}-${now}`).digest('hex'),
-    now,
-  ].join('-');
+  // return [
+  //   crypto.createHmac('sha256', secret).update(`${user.userId}-${now}`).digest('hex'),
+  //   now,
+  // ].join('-');
 }
 
 export function factory(req) {

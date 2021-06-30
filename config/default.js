@@ -94,7 +94,7 @@ module.exports = {
    * platform. */
   URL: {
     /* Connector URL of the TC accounts App. */
-    ACCOUNTS_APP_CONNECTOR: 'https://accounts-auth0.topcoder-dev.com',
+    // ACCOUNTS_APP_CONNECTOR: 'https://accounts-auth0.topcoder-dev.com',
 
     /* The remote address where the app is deployed. */
     APP: 'https://community-app.topcoder-dev.com',
@@ -104,7 +104,9 @@ module.exports = {
     COMMUNITY_APP: 'https://community-app.topcoder-dev.com',
 
     ARENA: 'https://arena.topcoder-dev.com',
-    AUTH: 'https://accounts-auth0.topcoder-dev.com',
+    // AUTH: 'https://accounts-auth0.topcoder-dev.com',
+    ACCOUNTS_APP_CONNECTOR: 'http://localhost:5000',
+    AUTH: 'http://localhost:5000',
     BASE: 'https://www.topcoder-dev.com',
     HOME: '/my-dashboard',
     BLOG: 'https://www.topcoder-dev.com/blog',
@@ -315,6 +317,7 @@ module.exports = {
       subMenu: [
         {
           title: 'Compete',
+          imageSrc: 'https://ssl.gstatic.com/ui/v1/icons/mail/rfr/logo_gmail_lockup_default_2x_r2.png',
           subMenu: [
             {
               title: 'All Challenges',
@@ -336,6 +339,7 @@ module.exports = {
         },
         {
           title: 'Tracks',
+          href: '/thrive/tracks?track=Competitive%20Programming',
           subMenu: [
             {
               title: 'Competitive Programming',

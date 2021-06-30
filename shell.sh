@@ -1,0 +1,11 @@
+export CONTENTFUL_CDN_API_KEY=9509cc6b93e546e7cb1e6b8b9fe494da6f398206a7658eebed1267d07c1f5cf7
+export CONTENTFUL_PREVIEW_API_KEY=ca4d1d7000d03a6513ba7d2e97b63f13e0dc718af44d756cbd390a174fbe448d
+export CONTENTFUL_SPACE_ID=b5f1djy59z3a
+export CONTENTFUL_EDU_SPACE_ID=piwi0eufbb2g
+export CONTENTFUL_EDU_CDN_API_KEY=xHHchq8OAp7NO3qd8YnHw0Aa5bwM6C5w3dTC-q6uRH8
+export CONTENTFUL_EDU_PREVIEW_API_KEY=Wbm5tCa1iTz9TBk1ljUH9CuC6jDmYoYfp-y97IW2Fts
+
+# export PORT=80
+# npm run build:dev
+npm run dev
+# BABEL_ENV=development NODE_ENV=development node --inspect-brk ./bin/www

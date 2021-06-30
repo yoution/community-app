@@ -73,7 +73,7 @@ const Header = ({
     return (
       <div styleName="nav-header-wrapper">
         <TopNavRef
-          menu={headerMenu || config.HEADER_MENU}
+          menu={headerMenu || config.HEADER_MENU.slice(1)}
           rightMenu={(
             <LoginNavRef
               loggedIn={!_.isEmpty(profile)}

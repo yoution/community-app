@@ -49,7 +49,6 @@ export default function App() {
         transitionOut="fadeOut"
         progressBar={false}
       />
-      { isomorphy.isDevBuild() ? <DevTools /> : undefined }
     </div>
   );
 }
